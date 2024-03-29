@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useEffectOnce } from "./useEffectOnce";
 
-export const useAsync = (asyncFunction: any) => {
+export const useAsync = <T>(asyncFunction: () => Promise<{ data: T }>) => {
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<T | null>(null);
 
   interface CustomError extends Error {
     response?: {

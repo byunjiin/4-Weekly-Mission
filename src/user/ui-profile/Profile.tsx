@@ -7,7 +7,7 @@ interface Props extends ProfileProps {
   profile: any;
 }
 
-export const Profile = (profile: Props) => {
+export const Profile = ({ profile }: Props) => {
   return (
     <div className={cx("container")}>
       <img
