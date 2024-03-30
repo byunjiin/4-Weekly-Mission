@@ -16,3 +16,5 @@ export const CardList = forwardRef(
     );
   }
 );
+
+CardList.displayName = "CardList";
