@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
-import styles from "../singin/Signin.module.scss";
+import styles from "../sign/Sign.module.scss";
 import { Link } from "react-router-dom";
+import { Input } from "input/UserInput/Input";
 
 const cx = classNames.bind(styles);
 
@@ -21,28 +22,23 @@ export const SigninPage = () => {
           <form>
             <div className={cx("idBox")}>
               <label htmlFor="username">이메일</label>
-              <input
-                id="username"
-                className={cx("username")}
-                name="username"
-                placeholder="codeit@codeit.com"
-              />
+
+              <Input
+                inputType="text"
+                inputName="username"
+                inputContent="codeit@codeit.com"
+                labelId="username"
+              ></Input>
             </div>
             <div className={cx("pwBox")}>
               <label htmlFor="password">비밀번호</label>
               <div className={cx("pwText")}>
-                <input
-                  id="password"
-                  className={cx("password")}
-                  name="password"
-                  type="password"
-                  placeholder="••••••••"
-                />
-                <img
-                  className={cx("eye")}
-                  src="../images/eye-off.svg"
-                  alt="eye-off"
-                />
+                <Input
+                  inputType="password"
+                  inputName="password"
+                  inputContent="••••••••"
+                  labelId="password"
+                ></Input>
               </div>
             </div>
             <button type="submit" className={cx("loginBtn")}>

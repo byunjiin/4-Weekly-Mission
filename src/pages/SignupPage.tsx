@@ -1,6 +1,7 @@
 import classNames from "classnames/bind";
-import styles from "../signup/Signup.module.scss";
+import styles from "../sign/Sign.module.scss";
 import { Link } from "react-router-dom";
+import { Input } from "input/UserInput/Input";
 
 const cx = classNames.bind(styles);
 
@@ -21,45 +22,33 @@ export const SignupPage = () => {
           <form>
             <div className={cx("idbox")}>
               <label htmlFor="username">이메일</label>
-              <input
-                id="username"
-                className={cx("username")}
-                name="username"
-                placeholder="codeit@codeit.com"
-              />
+              <Input
+                inputType="text"
+                inputName="username"
+                inputContent="codeit@codeit.com"
+                labelId="username"
+              ></Input>
             </div>
             <div className={cx("pwBox")}>
               <label htmlFor="password">비밀번호</label>
               <div className={cx("pwText")}>
-                <input
-                  id="password"
-                  className={cx("password")}
-                  name="password"
-                  type="password"
-                  placeholder="linkbrary2023"
-                />
-                <img
-                  className={cx("eye")}
-                  src="../images/eye-on.svg"
-                  alt="eye-on"
-                />
+                <Input
+                  inputType="password"
+                  inputName="password"
+                  inputContent="linkbrary2023"
+                  labelId="password"
+                ></Input>
               </div>
             </div>
             <div className={cx("pwBox")}>
               <label htmlFor="password_check">비밀번호 확인</label>
               <div className={cx("pwText")}>
-                <input
-                  className={cx("password")}
-                  id="password_check"
-                  name="password_check"
-                  type="password"
-                  placeholder="linkbrary20245"
-                />
-                <img
-                  className={cx("eye")}
-                  src="../images/eye-on.svg"
-                  alt="eye-on"
-                />
+                <Input
+                  inputType="password"
+                  inputName="password"
+                  inputContent="linkbrary20245"
+                  labelId="password_check"
+                ></Input>
               </div>
             </div>
             <button className={cx("join_btn")}>회원가입</button>
