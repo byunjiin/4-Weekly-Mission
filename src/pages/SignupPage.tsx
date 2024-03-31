@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "../signup/Signup.module.scss";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -9,12 +10,12 @@ export const SignupPage = () => {
       <div className={cx("signup")}>
         <div className={cx("contents")}>
           <div className={cx("title")}>
-            <a href="./index.html">
+            <Link to="/">
               <img src="../images/logo.svg" alt="logo" />
-            </a>
+            </Link>
             <div className={cx("description")}>
               <p>이미 회원신가요?</p>
-              <a href="./signin.html">로그인하기</a>
+              <Link to="/signin">로그인하기</Link>
             </div>
           </div>
           <form>

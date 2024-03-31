@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "../FooterLayout/FooterLayout.module.scss";
 import classNames from "classnames/bind";
 const cx = classNames.bind(styles);
@@ -9,12 +10,12 @@ export const FooterLayout = () => {
         <div className={cx("footerBox")}>
           <div className={cx("copyright")}>©codeit - 2023</div>
           <div className={cx("footerLink")}>
-            <a href="./privacy.html" className={cx("privacy")}>
+            <Link to="/privacy" className={cx("privacy")}>
               Privacy Policy
-            </a>
-            <a href="./faq.html" className={cx("faq")}>
+            </Link>
+            <Link to="/faq" className={cx("faq")}>
               FAQ
-            </a>
+            </Link>
           </div>
           <div className={cx("icons")}>
             <a href="https://www.facebook.com/?locale=ko_KR">

@@ -2,6 +2,7 @@ import { FooterLayout } from "page-layout/FooterLayout";
 import styles from "../main/Main.module.scss";
 import classNames from "classnames/bind";
 import { HeaderLayout } from "page-layout/HeaderLayout";
+import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 
 export const MainPage = () => {
@@ -18,9 +19,9 @@ export const MainPage = () => {
               </p>
               <p>쉽게 저장하고 관리해 보세요</p>
             </h1>
-            <a href="./signup.html" className={cx("link")}>
+            <Link to="/signup" className={cx("link")}>
               링크 추가하기
-            </a>
+            </Link>
             <div className={cx("imgBox")}>
               <img src="../images/main_img.png" alt="메인" />
             </div>
