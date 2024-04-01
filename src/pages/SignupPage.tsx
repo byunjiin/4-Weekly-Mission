@@ -31,25 +31,21 @@ export const SignupPage = () => {
             </div>
             <div className={cx("pwBox")}>
               <label htmlFor="password">비밀번호</label>
-              <div className={cx("pwText")}>
-                <Input
-                  inputType="password"
-                  inputName="password"
-                  inputContent="linkbrary2023"
-                  labelId="password"
-                ></Input>
-              </div>
+              <Input
+                inputType="password"
+                inputName="password"
+                inputContent="linkbrary2023"
+                labelId="password"
+              ></Input>
             </div>
             <div className={cx("pwBox")}>
               <label htmlFor="password_check">비밀번호 확인</label>
-              <div className={cx("pwText")}>
-                <Input
-                  inputType="password"
-                  inputName="password"
-                  inputContent="linkbrary20245"
-                  labelId="password_check"
-                ></Input>
-              </div>
+              <Input
+                inputType="password"
+                inputName="password"
+                inputContent="linkbrary20245"
+                labelId="password_check"
+              ></Input>
             </div>
             <button className={cx("join_btn")}>회원가입</button>
           </form>

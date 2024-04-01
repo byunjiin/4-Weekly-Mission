@@ -22,7 +22,6 @@ export const SigninPage = () => {
           <form>
             <div className={cx("idBox")}>
               <label htmlFor="username">이메일</label>
-
               <Input
                 inputType="text"
                 inputName="username"
@@ -32,14 +31,12 @@ export const SigninPage = () => {
             </div>
             <div className={cx("pwBox")}>
               <label htmlFor="password">비밀번호</label>
-              <div className={cx("pwText")}>
-                <Input
-                  inputType="password"
-                  inputName="password"
-                  inputContent="••••••••"
-                  labelId="password"
-                ></Input>
-              </div>
+              <Input
+                inputType="password"
+                inputName="password"
+                inputContent="••••••••"
+                labelId="password"
+              ></Input>
             </div>
             <button type="submit" className={cx("loginBtn")}>
               로그인

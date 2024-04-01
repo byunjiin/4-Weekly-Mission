@@ -104,7 +104,7 @@ form label {
   box-sizing: border-box;
 }
 .username:focus {
-  border: 3px solid $color-primary;
+  border: 1px solid $color-primary;
   outline: 0.1rem solid $color-primary;
 }
 form .pwText {
@@ -122,7 +122,7 @@ form .password:focus {
   outline: none;
 }
 form .pwText:focus-within {
-  border: 3px solid $color-primary;
+  border: 1px solid $color-primary;
 }
 form .password {
   border: none;
@@ -196,6 +196,12 @@ form .password {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+}
+
+.errorText {
+  display: none;
+  color: $color-red;
+  font-size: 14px;
 }
 @media (min-width: 375px) and (max-width: 767px) {
   .signin {
