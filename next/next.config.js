@@ -44,6 +44,7 @@ module.exports = {
       "testing-library.com",
       "static.cdninstagram.com",
       "s.pstatic.net",
+      "jasonwatmore.com",
     ],
   },
 };

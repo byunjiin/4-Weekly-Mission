@@ -43,7 +43,7 @@ export default function AddLinkModal({
         content={
           <div className={cx("modal-content")}>
             <div className={cx("folder-list")}>
-              {folders?.map(({ id, name, link }) => (
+              {folders.links?.map(({ id, name, link }) => (
                 <FolderItem
                   key={id}
                   isSelected={id === selectedFolderId}

@@ -10,7 +10,7 @@ import {
   MODALS_ID,
 } from "./constant";
 import { ALL_LINKS_ID } from "component/link/data-access-link/constant";
-import { useState, KeyboardEventHandler } from "react";
+import { useState } from "react";
 import ShareModal from "component/folder/ui-share-modal/ShareModal";
 import InputModal from "component/sharing/ui-input-modal/InputModal";
 import AlertModal from "component/sharing/ui-alert-modal/AlertModal";

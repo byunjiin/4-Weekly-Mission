@@ -16,7 +16,6 @@ export default function LinkForm() {
       closeModal();
     }
   };
-
   return (
     <>
       <UiLinkForm onSubmit={() => setIsModalOpen(true)} />
