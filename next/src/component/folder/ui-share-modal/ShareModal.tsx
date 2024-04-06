@@ -7,6 +7,7 @@ import ModalContentTitle from "component/sharing/ui-modal-content-title/ModalCon
 import KakaoIcon from "./kakao.svg";
 import FacebookIcon from "./facebook.svg";
 import LinkIcon from "./link.svg";
+import Image from "next/image";
 import { MouseEventHandler, KeyboardEventHandler } from "react";
 
 const cx = classNames.bind(styles);
@@ -42,15 +43,15 @@ export default function ShareModal({
         content={
           <div className={cx("modal-content")}>
             <button className={cx("button")} onClick={onKakaoClick}>
-              <KakaoIcon />
+              <Image src={KakaoIcon} alt="KakaoIcon" />
               <span>카카오톡</span>
             </button>
             <button className={cx("button")} onClick={onFacebookClick}>
-              <FacebookIcon />
+              <Image src={FacebookIcon} alt="FacebookIcon" />
               <span>페이스북</span>
             </button>
             <button className={cx("button")} onClick={onLinkCopyClick}>
-              <LinkIcon />
+              <Image src={LinkIcon} alt="LinkIcon" />
               <span>링크 복사</span>
             </button>
           </div>

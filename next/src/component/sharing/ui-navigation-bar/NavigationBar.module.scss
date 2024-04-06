@@ -41,12 +41,17 @@
 }
 
 .signin {
-  display: inline-block;
   width: 8rem;
   padding: 1rem 0;
   font-size: 1.4rem;
   font-weight: 600;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  background: linear-gradient(91deg, $color-primary 0.12%, #6ae3fe 101.84%);
+  color: $color-gray-light;
 
   @include tablet {
     width: 12.8rem;

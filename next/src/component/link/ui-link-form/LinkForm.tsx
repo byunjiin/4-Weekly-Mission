@@ -1,4 +1,3 @@
-import Cta from "component/sharing/ui-cta/Cta";
 import styles from "./LinkForm.module.scss";
 import classNames from "classnames/bind";
 import Image from "next/image";
@@ -23,7 +22,7 @@ export const LinkForm = ({ onSubmit }: { onSubmit: any }) => {
           />
         </div>
         <button className={cx("button")} type="submit">
-          <Cta>추가하기</Cta>
+          추가하기
         </button>
       </form>
     </div>

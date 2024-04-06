@@ -16,7 +16,7 @@ export const Layout: React.FC<LayoutProps> = ({
   children,
   isSticky = true,
 }) => {
-  const data: any = useGetUser();
+  const data = useGetUser();
   const { email, profileImageSource }: ProfileProps = data.data || {};
   const profile = data.data ? { email, profileImageSource } : null;
 

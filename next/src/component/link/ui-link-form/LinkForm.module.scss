@@ -73,4 +73,10 @@
   height: 3.7rem;
   font-size: 1.4rem;
   color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.8rem;
+  background: linear-gradient(91deg, $color-primary 0.12%, #6ae3fe 101.84%);
+  color: $color-gray-light;
 }

@@ -1,7 +1,6 @@
 import styles from "./NavigationBar.module.scss";
 import classNames from "classnames/bind";
 import { ROUTE } from "component/sharing/util";
-import Cta from "component/sharing/ui-cta/Cta";
 import Profile from "component/user/ui-profile/Profile";
 import { TEXT } from "./constant";
 import { ProfileProps } from "component/sharing/share";
@@ -14,7 +13,7 @@ interface NavigationBarProps {
   isSticky?: boolean;
 }
 
-const NavigationBar: React.FC<NavigationBarProps> = ({ profile, isSticky }) => {
+function NavigationBar({ profile, isSticky }: NavigationBarProps) {
   return (
     <nav className={cx("container", { sticky: isSticky })}>
       <div className={cx("items")}>
@@ -29,14 +28,12 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ profile, isSticky }) => {
           <Profile profile={profile} />
         ) : (
           <a href={ROUTE.로그인}>
-            <Cta>
-              <span className={cx("signin")}>{TEXT.login}</span>
-            </Cta>
+            <span className={cx("signin")}>{TEXT.login}</span>
           </a>
         )}
       </div>
     </nav>
   );
-};
+}
 
 export default NavigationBar;
