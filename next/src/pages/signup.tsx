@@ -7,6 +7,9 @@ import logoImg from "../../public/images/logo.svg";
 import googleImg from "../../public/images/google.png";
 import kakaoImg from "../../public/images/kakao.png";
 import { FieldError, useForm, SubmitHandler } from "react-hook-form";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const cx = classNames.bind(styles);
 
@@ -25,9 +28,47 @@ export default function SignupPage() {
     clearErrors,
     setError,
   } = useForm<signupFrom>({ mode: "onBlur", reValidateMode: "onBlur" });
-  const onSubmitHandler: SubmitHandler<signupFrom> = (data) => {
-    console.log(data);
+  const [checkErrors, setCheckErrors] = useState(false);
+  const router = useRouter();
+  const onSubmitHandler: SubmitHandler<signupFrom> = async (data) => {
+    try {
+      const responsecheck = await axios.post(
+        "https://bootcamp-api.codeit.kr/api/check-email",
+        {
+          email: data.email,
+        }
+      );
+      if (responsecheck.data.data.isUsableNickname) {
+        const response = await axios.post(
+          "https://bootcamp-api.codeit.kr/api/sign-up",
+          {
+            email: data.email,
+            password: data.password,
+          }
+        );
+        if (response.status === 200) {
+          window.localStorage.setItem(
+            "accessToken",
+            response.data.data.accessToken
+          );
+          router.push("/folder");
+        }
+        console.log(response);
+      }
+    } catch (error: any) {
+      console.log(error);
+      if (error.response.status === 409) {
+        // 회원가입 기본 에러는 400, check관련 에러는 409
+        setCheckErrors(!checkErrors); // 여긴 api를 2개 써서 뭐가 formState: { errors }인지 모르니깐 직접 checkError를 만들어줌
+      }
+    }
   };
+  useEffect(() => {
+    if (window.localStorage.getItem("accessToken")) {
+      // 로컬스토리지에서 가져오기
+      router.push("/folder");
+    }
+  }, []);
   return (
     <>
       {/* sing부분만 body색이 달라서 전역으로 만들어줬음 */}
@@ -75,6 +116,11 @@ export default function SignupPage() {
                   inputContent="codeit@codeit.com"
                   labelId="username"
                 ></Input>
+                {checkErrors && (
+                  <div className={cx("errorText")}>
+                    이미 사용 중인 이메일입니다.
+                  </div>
+                )}
               </div>
               <div className={cx("pwBox")}>
                 <label htmlFor="password">비밀번호</label>
