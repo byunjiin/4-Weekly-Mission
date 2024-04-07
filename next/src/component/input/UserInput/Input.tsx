@@ -5,14 +5,26 @@ import textError from "./input-error/textError";
 import Image from "next/image";
 import eyeonImg from "../../../../public/images/eye-on.svg";
 import eyeoffImg from "../../../../public/images/eye-off.svg";
+import {
+  FieldError,
+  UseFormClearErrors,
+  UseFormRegisterReturn,
+} from "react-hook-form";
 
 const cx = classNames.bind(styles);
-
+interface signinFrom {
+  email: string;
+  password: string;
+}
 interface InputProps {
   inputType: "text" | "password";
   inputName: string;
   inputContent: string;
   labelId: string;
+  type: any;
+  register: UseFormRegisterReturn; //이걸 써야 useForm에서 쓰는거라고
+  error: FieldError;
+  clearError: UseFormClearErrors<signinFrom>;
 }
 
 export default function Input({
@@ -20,42 +32,17 @@ export default function Input({
   inputName,
   inputContent,
   labelId,
+  register,
+  error,
+  type,
+  clearError,
 }: InputProps) {
   const inputRef = useRef<null | any>(null);
   const pRef = useRef<null | any>(null);
   const [openEye, setOpenEye] = useState(false);
-  // const [error, setError] = useState(null);
 
   const toggleEye = () => {
     setOpenEye(!openEye);
-  };
-
-  // id박스에서
-  const focusOutId = () => {
-    if (textError(inputRef) !== undefined) {
-      // 오류메세지가 있다면
-      inputRef.current.style.setProperty("border", "1px solid red");
-      pRef.current.style.setProperty("display", "block");
-      pRef.current.textContent = textError(inputRef);
-    }
-  };
-  const focusInId = () => {
-    inputRef.current.style.setProperty("border", "1px solid #ccd5e3");
-    pRef.current.style.setProperty("display", "none");
-    pRef.current.textContent = "";
-  };
-
-  // pw박스에서
-  const focusOutPw = () => {
-    if (inputRef.current.value.length < 1) {
-      inputRef.current.parentNode.style.setProperty("border", "1px solid red");
-    }
-  };
-  const focusInPw = () => {
-    inputRef.current.parentNode.style.setProperty(
-      "border",
-      "1px solid #ccd5e3"
-    );
   };
 
   return (
@@ -64,32 +51,39 @@ export default function Input({
       {inputType === "text" ? (
         <>
           <input
+            {...register}
             type={inputType}
-            className={cx(inputName)}
+            className={error?.message ? cx("redEmailName") : cx(inputName)}
             placeholder={inputContent}
             id={labelId}
-            ref={inputRef}
-            onBlur={focusOutId}
-            onFocus={focusInId}
+            onFocus={() => clearError(type)}
           />
-          <p className={cx("errorText")} ref={pRef}></p>
+          {error?.message && (
+            <div className={cx("errorText")}>{error.message}</div>
+          )}
         </>
       ) : (
-        <div className={cx("pwText")} onBlur={focusOutPw} onFocus={focusInPw}>
-          <input
-            type={openEye ? "text" : "password"}
-            className={cx(inputName)}
-            placeholder={inputContent}
-            id={labelId}
-            ref={inputRef}
-          />
-          <Image
-            className={cx("eye")}
-            src={openEye ? eyeonImg : eyeoffImg}
-            onClick={toggleEye}
-            alt={openEye ? "eye-on" : "eye-off"}
-          />
-        </div>
+        <>
+          <div className={error?.message ? cx("redPwName") : cx("pwText")}>
+            <input
+              {...register}
+              type={openEye ? "text" : "password"}
+              className={cx(inputName)}
+              placeholder={inputContent}
+              id={labelId}
+              onFocus={() => clearError(type)}
+            />
+            <Image
+              className={cx("eye")}
+              src={openEye ? eyeonImg : eyeoffImg}
+              onClick={toggleEye}
+              alt={openEye ? "eye-on" : "eye-off"}
+            />
+          </div>
+          {error?.message && (
+            <div className={cx("errorText")}>{error.message}</div>
+          )}
+        </>
       )}
     </>
   );
