@@ -9,6 +9,7 @@ import kakaoImg from "../../public/images/kakao.png";
 import { FieldError, useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const cx = classNames.bind(styles);
 
@@ -26,15 +27,34 @@ export default function SigninPage() {
     clearErrors,
     setError,
   } = useForm<signinFrom>({ mode: "onBlur", reValidateMode: "onBlur" });
+  const router = useRouter();
   const onSubmitHandler: SubmitHandler<signinFrom> = async (data) => {
-    const response = await axios.post(
-      "https://bootcamp-api.codeit.kr/api/sign-in",
-      data
-    );
-    console.log(response.data.data.accessToken);
-    window.localStorage.setItem("accessToken", response.data.data.accessToken);
+    try {
+      const response = await axios.post(
+        "https://bootcamp-api.codeit.kr/api/sign-in",
+        data
+      );
+      if (response.status === 200) {
+        // 모든 오류가 없을때
+        window.localStorage.setItem(
+          // 로컬스토리지에 만들기
+          "accessToken",
+          response.data.data.accessToken
+        );
+        router.push("/folder");
+      }
+    } catch (error) {
+      // 조건은 만족했지만 주어진 값("email”: “test@codeit.com”, “password”: “sprint101”)이 아닐때
+      console.log(error);
+    }
   };
-  const a = useRouter();
+
+  useEffect(() => {
+    if (window.localStorage.getItem("accessToken")) {
+      // 로컬스토리지에서 가져오기
+      router.push("/folder");
+    }
+  }, []);
   return (
     <>
       {/* sing부분만 body색이 달라서 전역으로 만들어줬음 */}
@@ -63,6 +83,7 @@ export default function SigninPage() {
             >
               <div className={cx("idBox")}>
                 <label htmlFor="username">이메일</label>
+
                 <Input
                   register={register("email", {
                     required: {
@@ -82,6 +103,9 @@ export default function SigninPage() {
                   inputContent="codeit@codeit.com"
                   labelId="username"
                 ></Input>
+                {errors && (
+                  <div className={cx("errorText")}>이메일을 확인해주세요.</div>
+                )}
               </div>
               <div className={cx("pwBox")}>
                 <label htmlFor="password">비밀번호</label>
@@ -105,6 +129,11 @@ export default function SigninPage() {
                   inputContent="••••••••"
                   labelId="password"
                 ></Input>
+                {errors && (
+                  <div className={cx("errorText")}>
+                    비밀번호를 확인해주세요.
+                  </div>
+                )}
               </div>
               <button type="submit" className={cx("loginBtn")}>
                 로그인
