@@ -45,6 +45,8 @@ module.exports = {
       "static.cdninstagram.com",
       "s.pstatic.net",
       "jasonwatmore.com",
+      "ssl.pstatic.net",
+      "data1.pokemonkorea.co.kr",
     ],
   },
 };
