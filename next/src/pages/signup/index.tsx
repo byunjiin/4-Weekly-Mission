@@ -1,16 +1,16 @@
 import classNames from "classnames/bind";
-import styles from "../component/sign/Sign.module.scss";
+import styles from "../../component/sign/Sign.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import logoImg from "../../public/images/logo.svg";
-import googleImg from "../../public/images/google.png";
-import kakaoImg from "../../public/images/kakao.png";
+import logoImg from "../../../public/images/logo.svg";
+import googleImg from "../../../public/images/google.png";
+import kakaoImg from "../../../public/images/kakao.png";
 import { FieldError, useForm, SubmitHandler } from "react-hook-form";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import TextInput from "component/input/UserInput/textInput";
-import PasswordInput from "component/input/UserInput/passwordInput";
+import TextInput from "component/input/UserInput/TextInput";
+import PasswordInput from "component/input/UserInput/PasswordInput";
 
 const cx = classNames.bind(styles);
 
