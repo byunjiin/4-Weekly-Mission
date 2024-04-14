@@ -7,10 +7,10 @@ type asyncData = {
   asyncFunction: Folder;
 };
 export default function useGetFolder() {
-  const getFolder = () => axiosInstance.get("sample/folder");
+  const getFolder = () => axiosInstance.get("/api/folders");
   const { loading, data } = useAsync<asyncData>(getFolder);
 
   const folderData: any = mapFolderData((data as any)?.folder);
 
-  return { loading, data: folderData };
+  return { loading, folderData: folderData };
 }

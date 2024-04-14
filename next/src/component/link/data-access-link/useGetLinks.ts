@@ -17,10 +17,10 @@ interface AsyncProps {
   loading: boolean;
   data: any;
 }
-export default function useGetLinks(folderId = ALL_LINKS_ID) {
-  const queryString = folderId === ALL_LINKS_ID ? "" : `?folderId=${folderId}`;
+export default function useGetLinks(folderId: any, userData: any) {
+  const queryString = folderId === "" ? "" : `?folderId=${folderId}`;
   const getLinks = useCallback(
-    () => axiosInstance.get(`users/1/links${queryString}`),
+    () => axiosInstance.get(`users/${userData}/links${queryString}`),
     [queryString]
   );
   const { execute, loading, data }: AsyncProps = useAsync(getLinks);
@@ -48,5 +48,5 @@ export default function useGetLinks(folderId = ALL_LINKS_ID) {
 
   const linksData = data?.data.map(mapDataFormat).map(mapLinksData) ?? [];
 
-  return { execute, loading, data: linksData };
+  return { execute, loading, linkData: linksData };
 }

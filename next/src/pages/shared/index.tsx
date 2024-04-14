@@ -5,10 +5,16 @@ import { CardList } from "component/link/ui-card-list";
 import FolderInfo from "component/folder/ui-folder-info/FolderInfo";
 import { ReadOnlyCard } from "component/link/ui-read-only-card";
 import { SearchBar } from "component/link/ui-search-bar";
+import { useGetUser } from "component/user/data-access-user";
+import useGetLinks from "component/link/data-access-link/useGetLinks";
 
 export default function SharedPage() {
-  const { data } = useGetFolder();
-  const { profileImage, ownerName, folderName, links } = (data as any) || {};
+  const { userData } = useGetUser();
+  const { folderData } = useGetFolder();
+  const { linkData } = useGetLinks("", userData);
+  const { profileImage, ownerName } = (userData as any) || {};
+  const { folderName } = (folderData as any) || {};
+  const { links } = (linkData as any) || {};
 
   return (
     <Layout>
